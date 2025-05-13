@@ -1,57 +1,34 @@
-using clean_code_refactor.Data;
-using clean_code_refactor.Models;
+using clean_code_refactor.Services.Clientes;
 using clean_code_refactor.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace clean_code_refactor.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ClienteController : ControllerBase
+    public class ClienteController(IClienteService clienteService) : ControllerBase
     {
-        [HttpGet("clientes")]
-        public async Task<IActionResult> GetAsync([FromServices] AppDbContext context)
-        {
-            var clientes = await context
-                .Clientes
-                .AsNoTracking()
-                .ToListAsync();
+        #region ctor
+        private readonly IClienteService _clienteService = clienteService;
+        #endregion
 
-            return Ok(clientes);
+        [HttpGet]
+        public async Task<IActionResult> GetAsync() => Ok(await _clienteService.Recuperar());
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAByIdAsync([FromRoute] int id)
+        {
+            var cliente = await _clienteService.Recuperar(id);
+
+            return cliente == null ? NotFound() : Ok(cliente);
         }
 
-        [HttpGet("cliente/{id}")]
-        public async Task<IActionResult> GetAByIdAsync([FromServices] AppDbContext context, [FromRoute] int id)
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] CriarClienteViewModel clienteViewModel)
         {
-            var cliente = await context
-                .Clientes
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            return cliente == null 
-                ? NotFound() 
-                : Ok(cliente);
-        }
-
-        [HttpPost("Cliente")]
-        public async Task<IActionResult> PostAsync([FromServices] AppDbContext contexto, [FromBody] CriarClienteViewModel clienteViewModel)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest("Exitem campos a preencher!");
-
             try
             {
-                Cliente cliente = new()
-                {
-                    Cpf = clienteViewModel.Cpf,
-                    Nome = clienteViewModel.Nome
-                };
-
-                await contexto.Clientes.AddAsync(cliente);
-                await contexto.SaveChangesAsync();
-
-                return Created($"/clientes/{cliente.Id}", cliente);
+                return Ok(await _clienteService.Inserir(clienteViewModel));
             }
             catch
             {

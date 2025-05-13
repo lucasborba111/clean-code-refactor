@@ -1,5 +1,6 @@
-using clean_code_refactor.Data;
-using Microsoft.EntityFrameworkCore;
+using clean_code_refactor;
+using clean_code_refactor.Services.Clientes;
+using clean_code_refactor.Services.Reservas;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,10 +12,12 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
     opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IReservaService, ReservaService>();
+
+builder.Services.AddInfraSql(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AppDbContext>
-    (options => options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnectionString")));
 
 var app = builder.Build();
 
