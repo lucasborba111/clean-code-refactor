@@ -1,6 +1,6 @@
 using clean_code_refactor;
-using clean_code_refactor.Services.Clientes;
-using clean_code_refactor.Services.Reservas;
+using clean_code_refactor.Domain.Services.Clientes;
+using clean_code_refactor.Domain.Services.Reservas;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
