@@ -1,17 +1,19 @@
 ﻿using clean_code_refactor.Dal.Repositories.Reservas;
 using clean_code_refactor.Domain.Models;
+using clean_code_refactor.Domain.Services.Base;
 using clean_code_refactor.Domain.Services.Clientes;
 using clean_code_refactor.Domain.ViewModels;
 
 namespace clean_code_refactor.Domain.Services.Reservas
 {
-    public class ReservaService(IReservaRepository reservaRepository, IClienteService clienteServ) : IReservaService
+    public class ReservaService : BaseService<Reserva>, IReservaService
     {
-        private readonly IReservaRepository _reservaRepository = reservaRepository;
-        private readonly IClienteService _clienteServ = clienteServ;
-        public async Task<IList<Reserva>> Recuperar() => await _reservaRepository.ObterTodosAsync();
-        public async Task<Reserva> Recuperar(int id) => await _reservaRepository.ObterPorIdAsync(id);
-
+        private readonly IClienteService _clienteServ;
+        public ReservaService(IReservaRepository reservaRepository, IClienteService clienteService) 
+            : base(reservaRepository)
+        {
+            _clienteServ = clienteService;
+        }
         public async Task<Reserva> Inserir(CriarReservaViewModel dto)
         {
             _ = await _clienteServ.Recuperar(dto.ClienteId) 
@@ -19,7 +21,7 @@ namespace clean_code_refactor.Domain.Services.Reservas
 
             var reserva = new Reserva(dto.QuantidadePessoas, dto.TipoQuarto, dto.Diarias, dto.ClienteId);
 
-            return await _reservaRepository.AdicionarAsync(reserva);
+            return await Rep.AdicionarAsync(reserva);
         }
     }
 }

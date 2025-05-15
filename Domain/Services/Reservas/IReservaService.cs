@@ -1,12 +1,11 @@
 ﻿using clean_code_refactor.Domain.Models;
+using clean_code_refactor.Domain.Services.Base;
 using clean_code_refactor.Domain.ViewModels;
 
 namespace clean_code_refactor.Domain.Services.Reservas
 {
-    public interface IReservaService
+    public interface IReservaService : IBaseService<Reserva>
     {
         Task<Reserva> Inserir(CriarReservaViewModel dto);
-        Task<IList<Reserva>> Recuperar();
-        Task<Reserva> Recuperar(int id);
     }
 }
