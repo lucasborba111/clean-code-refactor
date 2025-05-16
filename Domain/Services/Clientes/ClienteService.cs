@@ -6,7 +6,7 @@ using clean_code_refactor.Domain.ViewModels;
 
 namespace clean_code_refactor.Domain.Services.Clientes
 {
-    public class ClienteService : BaseService<Cliente, CriarReservaViewModel>, IClienteService
+    public class ClienteService : BaseService<Cliente, CriarClienteViewModel>, IClienteService
     {
         public ClienteService(IClienteRepository clienteRep, IMapper mapper) : base(clienteRep, mapper) {}
     }
