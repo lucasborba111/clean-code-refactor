@@ -1,6 +1,8 @@
-﻿namespace clean_code_refactor.Domain.Bases
+﻿using AutoMapper;
+
+namespace clean_code_refactor.Domain.Bases
 {
-    public class Identificador
+    public class Identificador : Profile
     {
         public int Id { get; set; }
     }

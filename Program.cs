@@ -13,10 +13,11 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 });
 
 builder.Services.AddScoped<IClienteService, ClienteService>();
-builder.Services.AddScoped<IReservaService, ReservaService>();
+//builder.Services.AddScoped<IReservaService, ReservaService>();
 
 builder.Services.AddInfraSql(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
