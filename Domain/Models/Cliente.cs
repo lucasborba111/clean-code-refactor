@@ -1,15 +1,10 @@
-﻿using System.Text.Json.Serialization;
-using clean_code_refactor.Domain.Bases;
-using clean_code_refactor.Domain.ViewModels;
+﻿using clean_code_refactor.Domain.Bases;
+using System.Text.Json.Serialization;
 
 namespace clean_code_refactor.Domain.Models
 {
     public class Cliente : Identificador
     {
-        public Cliente()
-        {
-            CreateMap<Cliente, CriarClienteViewModel>();
-        }
         public string Nome { get; set; }
         public string Cpf { get; set; }
 
