@@ -1,4 +1,4 @@
-﻿namespace clean_code_refactor.Domain.Shared
+﻿namespace clean_code_refactor.Domain.Bases
 {
     public class Result<TValue> : Result
     {
@@ -10,7 +10,7 @@
             _value = value;
         }
 
-        public TValue? Value => IsSuccess
+        public TValue? Value => Success
         ? _value!
         : default;
 

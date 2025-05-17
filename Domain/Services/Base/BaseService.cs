@@ -3,22 +3,31 @@ using clean_code_refactor.Domain.Bases;
 
 namespace clean_code_refactor.Domain.Services.Base
 {
-    public abstract class BaseService<T, TViewModel> : IBaseService<T, TViewModel> where T : Identificador
+    public abstract class BaseService<T, TViewModel, IValidation> : IBaseService<T, TViewModel> 
+        where T : Identificador
+        where TViewModel : class
     {
-        protected IBaseRepository<T> Rep;
         protected IMapper Mapper;
-        public BaseService(IBaseRepository<T> rep, IMapper mapper)
+        protected IBaseRepository<T> Rep;
+        protected IValidation<TViewModel> Validation;
+        public BaseService(IBaseRepository<T> rep, IMapper mapper, IValidation<TViewModel> validation)
         {
             Rep = rep;
             Mapper = mapper;
+            Validation = validation;
         }
 
-        public async Task<IList<T>> Recuperar() => await Rep.ObterTodosAsync();
+        public async Task<Result<IList<T>>> Recuperar() => Result.SetSuccess(await Rep.ObterTodosAsync());
 
-        public async Task<T> Recuperar(int id) => await Rep.ObterPorIdAsync(id);
+        public async Task<Result<T>> Recuperar(int id) => Result.SetSuccess(await Rep.ObterPorIdAsync(id));
 
-        public virtual async Task<T> Inserir(TViewModel viewModel)
+        public virtual async Task<Result<T>> Inserir(TViewModel viewModel)
         {
+            var errors = Validation.CreatingValidation(viewModel);
+
+            if (errors.Count != 0)
+                return Result.SetFailure<T>(errors);
+
             var entity = Mapper.Map<T>(viewModel);
 
             return await Rep.AdicionarAsync(entity);

@@ -1,4 +1,4 @@
-﻿namespace clean_code_refactor.Domain.Shared
+﻿namespace clean_code_refactor.Domain.Bases
 {
     public class Error : IEquatable<Error>
     {

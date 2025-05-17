@@ -18,9 +18,11 @@ namespace clean_code_refactor.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAByIdAsync([FromRoute] int id)
         {
-            var cliente = await _clienteService.Recuperar(id);
+            var result = await _clienteService.Recuperar(id);
 
-            return cliente == null ? NotFound() : Ok(cliente);
+            return result.Success 
+                ? Ok(result.Value) 
+                : BadRequest(result);
         }
 
         [HttpPost]
@@ -28,11 +30,15 @@ namespace clean_code_refactor.Api.Controllers
         {
             try
             {
-                return Ok(await _clienteService.Inserir(clienteViewModel));
+                var result = await _clienteService.Inserir(clienteViewModel);
+
+                return result.Success 
+                    ? Ok(result.Value) 
+                    : BadRequest(result);
             }
-            catch
-            {
-                return BadRequest("Não foi possível criar cliente");
+            catch(Exception ex) 
+            { 
+                return BadRequest(ex.Message);
             }
         }
     }
