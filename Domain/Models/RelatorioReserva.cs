@@ -1,4 +1,6 @@
-﻿namespace clean_code_refactor.Domain.Models
+﻿using clean_code_refactor.Domain.Models.Reservas;
+
+namespace clean_code_refactor.Domain.Models
 {
     public class RelatorioReserva
     {

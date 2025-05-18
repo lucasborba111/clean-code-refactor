@@ -1,7 +1,8 @@
 ﻿using clean_code_refactor.Domain.Bases;
+using clean_code_refactor.Domain.Models.Reservas;
 using System.Text.Json.Serialization;
 
-namespace clean_code_refactor.Domain.Models
+namespace clean_code_refactor.Domain.Models.Clientes
 {
     public class Cliente : Identificador
     {

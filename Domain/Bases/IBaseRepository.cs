@@ -6,7 +6,8 @@ namespace clean_code_refactor.Domain.Bases
     {
         Task<T> AdicionarAsync(T Reserva);
         Task AtualizarAsync(T Reserva);
-        Task<T> ObterPorIdAsync(int id);
+        T? ObterPorId(int id);
+        Task<T?> ObterPorIdAsync(int id);
         Task<IList<T>> ObterTodosAsync();
         Task RemoverAsync(T Reserva);
     }

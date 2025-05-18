@@ -1,4 +1,4 @@
-﻿using clean_code_refactor.Domain.Models;
+﻿using clean_code_refactor.Domain.Models.Clientes;
 using clean_code_refactor.Domain.Services.Base;
 using clean_code_refactor.Domain.ViewModels;
 

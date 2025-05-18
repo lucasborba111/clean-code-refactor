@@ -16,11 +16,11 @@ namespace clean_code_refactor.Api.Controllers
         public async Task<IActionResult> GetAsync() => Ok(await _clienteService.Recuperar());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAByIdAsync([FromRoute] int id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
         {
             var result = await _clienteService.Recuperar(id);
 
-            return result.Success 
+            return result.Success && result.Value != null
                 ? Ok(result.Value) 
                 : BadRequest(result);
         }

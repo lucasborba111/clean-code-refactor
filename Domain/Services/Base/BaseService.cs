@@ -3,7 +3,7 @@ using clean_code_refactor.Domain.Bases;
 
 namespace clean_code_refactor.Domain.Services.Base
 {
-    public abstract class BaseService<T, TViewModel, IValidation> : IBaseService<T, TViewModel> 
+    public abstract class BaseService<T, TViewModel, IValidation> : IBaseService<T, TViewModel>
         where T : Identificador
         where TViewModel : class
     {
@@ -19,7 +19,15 @@ namespace clean_code_refactor.Domain.Services.Base
 
         public async Task<Result<IList<T>>> Recuperar() => Result.SetSuccess(await Rep.ObterTodosAsync());
 
-        public async Task<Result<T>> Recuperar(int id) => Result.SetSuccess(await Rep.ObterPorIdAsync(id));
+        public async Task<Result<T>> Recuperar(int id)
+        {
+            var entity = await Rep.ObterPorIdAsync(id);
+            
+            if (entity == null) 
+                return Result.SetFailure<T>(new List<Error> { Error.NotFound(typeof(T).Name, id)});
+
+            return Result.SetSuccess(entity);
+        }
 
         public virtual async Task<Result<T>> Inserir(TViewModel viewModel)
         {

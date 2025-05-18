@@ -1,13 +1,14 @@
 ﻿using clean_code_refactor.Domain.Bases;
+using clean_code_refactor.Domain.Models.Clientes;
 using System.Text.Json.Serialization;
 
-namespace clean_code_refactor.Domain.Models
+namespace clean_code_refactor.Domain.Models.Reservas
 {
     public class Reserva : Identificador
     {
         public Reserva(
-            int quantidadePessoas, 
-            TipoQuartoEnum tipoQuarto, 
+            int quantidadePessoas,
+            TipoQuartoEnum tipoQuarto,
             int diarias,
             int clienteId)
         {

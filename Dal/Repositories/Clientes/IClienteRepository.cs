@@ -1,5 +1,5 @@
 ﻿using clean_code_refactor.Domain.Bases;
-using clean_code_refactor.Domain.Models;
+using clean_code_refactor.Domain.Models.Clientes;
 
 namespace clean_code_refactor.Dal.Repositories.Clientes
 {

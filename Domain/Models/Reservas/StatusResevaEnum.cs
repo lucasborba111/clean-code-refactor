@@ -1,4 +1,4 @@
-﻿namespace clean_code_refactor.Domain.Models
+﻿namespace clean_code_refactor.Domain.Models.Reservas
 {
     public enum StatusReservaEnum
     {

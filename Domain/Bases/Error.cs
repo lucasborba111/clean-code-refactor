@@ -4,6 +4,7 @@
     {
         public static readonly Error None = new(string.Empty, string.Empty);
         public static Error NullValue(string field) => new("Error.NullValue", $"{field} não pode ser null.");
+        public static Error NotFound(string field, int id) => new("Error.NotFound", $"{field} de código {id} não foi encontrado.");
 
         public Error(string code, string message)
         {

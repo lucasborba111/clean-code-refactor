@@ -15,7 +15,8 @@ namespace clean_code_refactor.Dal.Repositories.Base
 
         public async Task<IList<T>> ObterTodosAsync() => await DbSet.AsNoTracking().ToListAsync();
 
-        public async Task<T> ObterPorIdAsync(int id) => await DbSet.FirstOrDefaultAsync(c => c.Id == id);
+        public async Task<T?> ObterPorIdAsync(int id) => await DbSet.FirstOrDefaultAsync(c => c.Id == id);
+        public T? ObterPorId(int id) => DbSet.Find(id);
 
         public async Task<T> AdicionarAsync(T entity)
         {

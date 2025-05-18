@@ -1,5 +1,5 @@
 ﻿using clean_code_refactor.Dal.Repositories.Base;
-using clean_code_refactor.Domain.Models;
+using clean_code_refactor.Domain.Models.Clientes;
 using Microsoft.EntityFrameworkCore;
 
 namespace clean_code_refactor.Dal.Repositories.Clientes
