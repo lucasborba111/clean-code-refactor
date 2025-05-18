@@ -32,5 +32,22 @@ namespace clean_code_refactor.Domain.Models.Reservas
 
         [JsonIgnore]
         public Cliente Cliente { get; set; }
+
+        public void RealizarCheckIn()
+        {
+            DataCheckIn = DateTime.Now;
+            Status = StatusReservaEnum.Ativo;
+        }
+
+        public void RealizarCheckOut()
+        {
+            DataCheckOut = DateTime.Now;
+            Status = StatusReservaEnum.Finalizado;
+        }
+
+        public void RealizarCancelamento()
+        {
+            Status = StatusReservaEnum.Cancelado;
+        }
     }
 }

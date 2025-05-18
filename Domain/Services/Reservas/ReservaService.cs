@@ -8,11 +8,36 @@ using clean_code_refactor.Domain.ViewModels;
 
 namespace clean_code_refactor.Domain.Services.Reservas
 {
-    public class ReservaService : BaseService<Reserva, CriarReservaViewModel, ReservaValidation>, IReservaService
+    public class ReservaService : BaseService<Reserva, ReservaViewModel, ReservaValidation>, IReservaService
     {
-        public ReservaService(
-            IReservaRepository reservaRep, 
-            IMapper mapper, 
-            IValidation<CriarReservaViewModel> validation) : base(reservaRep, mapper, validation) {}
+        public ReservaService(IReservaRepository reservaRep, IMapper mapper, IValidation<ReservaViewModel> validation) 
+            : base(reservaRep, mapper, validation) {}
+
+        public async void RealizarCheckIn(int id)
+        {
+            var result = await Recuperar(id);
+
+            result.Value.RealizarCheckIn();
+
+            await Rep.AtualizarAsync(result.Value);
+        }
+
+        public async void RealizarCheckOut(int id)
+        {
+            var result = await Recuperar(id);
+
+            result.Value.RealizarCheckOut();
+
+            await Rep.AtualizarAsync(result.Value);
+        }
+
+        public async void Cancelar(int id)
+        {
+            var result = await Recuperar(id);
+
+            result.Value.RealizarCheckOut();
+
+            await Rep.AtualizarAsync(result.Value);
+        }
     }
 }

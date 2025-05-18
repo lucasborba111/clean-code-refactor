@@ -19,7 +19,7 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IReservaService, ReservaService>();
 builder.Services.AddScoped<IValidation<CriarClienteViewModel>, ClienteValidation>();
-builder.Services.AddScoped<IValidation<CriarReservaViewModel>, ReservaValidation>();
+builder.Services.AddScoped<IValidation<ReservaViewModel>, ReservaValidation>();
 
 builder.Services.AddInfraSql(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

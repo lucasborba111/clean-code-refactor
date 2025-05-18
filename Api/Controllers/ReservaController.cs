@@ -25,7 +25,7 @@ namespace clean_code_refactor.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] CriarReservaViewModel dto)
+        public async Task<IActionResult> PostAsync([FromBody] ReservaViewModel dto)
         {
             try
             {
@@ -35,6 +35,48 @@ namespace clean_code_refactor.Api.Controllers
                     : BadRequest(result);
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("CheckIn/{id}")]
+        public async Task<IActionResult> CheckIn([FromRoute] int id)
+        {
+            try
+            {
+                _service.RealizarCheckIn(id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("CheckOut/{id}")]
+        public async Task<IActionResult> CheckOut([FromRoute] int id)
+        {
+            try
+            {
+                _service.RealizarCheckOut(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("Cancelar/{id}")]
+        public async Task<IActionResult> Cancelar([FromRoute] int id)
+        {
+            try
+            {
+                _service.Cancelar(id);
+                return Ok();
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }

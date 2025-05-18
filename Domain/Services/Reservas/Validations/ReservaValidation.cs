@@ -5,14 +5,14 @@ using clean_code_refactor.Domain.ViewModels;
 
 namespace clean_code_refactor.Domain.Services.Reservas.Validations
 {
-    public class ReservaValidation : Validation<CriarReservaViewModel>
+    public class ReservaValidation : Validation<ReservaViewModel>
     {
         private readonly IClienteRepository _clienteRepository;
         public ReservaValidation(IClienteRepository clienteRepository)
         {
             _clienteRepository = clienteRepository;
         }
-        public override List<Error> CreatingValidation(CriarReservaViewModel dto)
+        public override List<Error> CreatingValidation(ReservaViewModel dto)
         {
             var errors = new List<Error>();
 
@@ -20,11 +20,13 @@ namespace clean_code_refactor.Domain.Services.Reservas.Validations
                 errors.Add(ReservaErrors.QuantidadePessoasError("Quantidade de pessoas inválida: deve ser entre 1 e 4."));
 
             if (dto.Diarias < 1)
-                errors.Add(ReservaErrors.DiariasError("Número de diárias inválido: deve ser maior que zero."));
+                errors.Add(ReservaErrors.DiariasError());
             
             if (_clienteRepository.ObterPorId(dto.ClienteId) == null)
                 errors.Add(ReservaErrors.ClienteNaoEncontradoError());
 
+            if (dto.DataReserva < DateTime.Today)
+                errors.Add(ReservaErrors.DataReservaIncorreta());
 
             return errors;
         }

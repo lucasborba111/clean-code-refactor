@@ -7,8 +7,8 @@ namespace clean_code_refactor.Domain.Models.Reservas
     {
         public ReservaProfile()
         {
-            CreateMap<CriarReservaViewModel, Reserva>();
-            CreateMap<Reserva, CriarReservaViewModel>();
+            CreateMap<ReservaViewModel, Reserva>();
+            CreateMap<Reserva, ReservaViewModel>();
         }
     }
 }

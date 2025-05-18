@@ -21,10 +21,8 @@ namespace clean_code_refactor.Domain.Services.Base
 
         public async Task<Result<T>> Recuperar(int id)
         {
-            var entity = await Rep.ObterPorIdAsync(id);
-            
-            if (entity == null) 
-                return Result.SetFailure<T>(new List<Error> { Error.NotFound(typeof(T).Name, id)});
+            var entity = await Rep.ObterPorIdAsync(id) 
+                ?? throw new Exception($"Não foi possível encontrar {typeof(T).Name} com código {id}");
 
             return Result.SetSuccess(entity);
         }
