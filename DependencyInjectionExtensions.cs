@@ -4,10 +4,10 @@ namespace clean_code_refactor
 {
     public static class DependencyInjectionExtensions
     {
-        public static void ScanDependencyInjection(this IServiceCollection services, Assembly assembly, string classEndsWith)
+        public static void ScanDependencyInjection(this IServiceCollection services, Assembly assembly)
         {
             var types = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(x => x.GetInterfaces().Any(i => i.Name.EndsWith(classEndsWith)));
+                .Where(x => x.GetInterfaces().Any(i => i.Name.EndsWith("Repository") || i.Name.EndsWith("Service")));
 
             foreach (var type in types)
             {

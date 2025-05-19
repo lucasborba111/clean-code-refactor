@@ -3,7 +3,8 @@ using clean_code_refactor.Domain.Bases;
 
 namespace clean_code_refactor.Domain.Services.Base
 {
-    public abstract class BaseService<T, TViewModel, IValidation> : IBaseService<T, TViewModel>
+    //Esta classe não pode ser abstrata, para que o AddScoped funcione
+    public class BaseService<T, TViewModel> : IBaseService<T, TViewModel>
         where T : Identificador
         where TViewModel : class
     {

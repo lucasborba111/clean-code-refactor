@@ -1,5 +1,5 @@
-﻿using clean_code_refactor.Dal.Repositories.Clientes;
-using clean_code_refactor.Domain.Bases;
+﻿using clean_code_refactor.Domain.Bases;
+using clean_code_refactor.Domain.Models.Clientes;
 using clean_code_refactor.Domain.Services.Reservas.Validations.Errors;
 using clean_code_refactor.Domain.ViewModels;
 
@@ -7,8 +7,8 @@ namespace clean_code_refactor.Domain.Services.Reservas.Validations
 {
     public class ReservaValidation : Validation<ReservaViewModel>
     {
-        private readonly IClienteRepository _clienteRepository;
-        public ReservaValidation(IClienteRepository clienteRepository)
+        private readonly IBaseRepository<Cliente> _clienteRepository;
+        public ReservaValidation(IBaseRepository<Cliente> clienteRepository)
         {
             _clienteRepository = clienteRepository;
         }

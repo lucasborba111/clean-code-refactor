@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace clean_code_refactor.Dal.Repositories.Base
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : Identificador
+    //Esta classe não pode ser abstrata, para que o AddScoped funcione
+    public class BaseRepository<T> : IBaseRepository<T> where T : Identificador
     {
         protected readonly DbContext Db;
         protected readonly DbSet<T> DbSet;

@@ -11,7 +11,7 @@ namespace clean_code_refactor
             services.AddDbContext<AppDbContext>
                 (options => options.UseSqlite(configuration.GetConnectionString("SqliteConnectionString")));
 
-            services.ScanDependencyInjection(Assembly.GetExecutingAssembly(), "Repository");
+            services.ScanDependencyInjection(Assembly.GetExecutingAssembly());
         }
     }
 }
