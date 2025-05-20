@@ -17,7 +17,7 @@ namespace clean_code_refactor.Domain.Services.Reservas.Validations
             var errors = new List<Error>();
 
             if (dto.QuantidadePessoas < 1 || dto.QuantidadePessoas > 4)
-                errors.Add(ReservaErrors.QuantidadePessoasError("Quantidade de pessoas inválida: deve ser entre 1 e 4."));
+                errors.Add(ReservaErrors.QuantidadePessoasError());
 
             if (dto.Diarias < 1)
                 errors.Add(ReservaErrors.DiariasError());

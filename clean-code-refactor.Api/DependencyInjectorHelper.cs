@@ -1,9 +1,7 @@
-﻿using clean_code_refactor.Controllers;
-using clean_code_refactor.Dal;
+﻿using clean_code_refactor.Dal;
 using clean_code_refactor.Dal.Repositories.Base;
-using clean_code_refactor.Domain.Services.Clientes;
+using clean_code_refactor.Domain.Services.Base;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace clean_code_refactor
 {
@@ -15,9 +13,8 @@ namespace clean_code_refactor
                 (options => options.UseSqlite(configuration.GetConnectionString("SqliteConnectionString")));
 
             services.ScanDependencyInjection(
-                typeof(ClienteService).Assembly,
-                typeof(BaseRepository<>).Assembly,
-                typeof(ClienteController).Assembly
+                typeof(BaseService<,>).Assembly,
+                typeof(BaseRepository<>).Assembly
             );
         }
     }
