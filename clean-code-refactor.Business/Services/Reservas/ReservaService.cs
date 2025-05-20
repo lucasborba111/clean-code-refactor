@@ -11,7 +11,7 @@ namespace clean_code_refactor.Domain.Services.Reservas
         public ReservaService(IBaseRepository<Reserva> reservaRep, IMapper mapper, IValidation<ReservaViewModel> validation) 
             : base(reservaRep, mapper, validation) {}
 
-        public async void RealizarCheckIn(int id)
+        public async Task RealizarCheckIn(int id)
         {
             var result = await Recuperar(id);
 
@@ -20,7 +20,7 @@ namespace clean_code_refactor.Domain.Services.Reservas
             await Rep.AtualizarAsync(result.Value);
         }
 
-        public async void RealizarCheckOut(int id)
+        public async Task RealizarCheckOut(int id)
         {
             var result = await Recuperar(id);
 
@@ -29,7 +29,7 @@ namespace clean_code_refactor.Domain.Services.Reservas
             await Rep.AtualizarAsync(result.Value);
         }
 
-        public async void Cancelar(int id)
+        public async Task Cancelar(int id)
         {
             var result = await Recuperar(id);
 

@@ -2,7 +2,7 @@
 
 namespace clean_code_refactor.Domain.ViewModels
 {
-    public class CriarClienteViewModel
+    public class ClienteViewModel
     {
         [Required]
         public string Nome { get; set; }

@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace clean_code_refactor.Domain.Services.Clientes.Validations
 {
-    public class ClienteValidation : Validation<CriarClienteViewModel>
+    public class ClienteValidation : Validation<ClienteViewModel>
     {
-        public override List<Error> CreatingValidation(CriarClienteViewModel dto)
+        public override List<Error> CreatingValidation(ClienteViewModel dto)
         {
             var errors = new List<Error>();
 

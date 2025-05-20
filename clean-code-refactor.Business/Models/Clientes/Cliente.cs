@@ -1,5 +1,7 @@
-﻿using clean_code_refactor.Business.Models.Reservas;
+﻿using AutoMapper;
+using clean_code_refactor.Business.Models.Reservas;
 using clean_code_refactor.Domain.Bases;
+using clean_code_refactor.Domain.ViewModels;
 using System.Text.Json.Serialization;
 
 namespace clean_code_refactor.Business.Models.Clientes
@@ -12,5 +14,13 @@ namespace clean_code_refactor.Business.Models.Clientes
         [JsonIgnore]
         public ICollection<Reserva> Reservas { get; set; }
 
+    }
+    public class ClienteProfile : Profile
+    {
+        public ClienteProfile()
+        {
+            CreateMap<ClienteViewModel, Cliente>();
+            CreateMap<Cliente, ClienteViewModel>();
+        }
     }
 }

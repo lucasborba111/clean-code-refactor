@@ -26,7 +26,7 @@ namespace clean_code_refactor.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] CriarClienteViewModel clienteViewModel)
+        public async Task<IActionResult> PostAsync([FromBody] ClienteViewModel clienteViewModel)
         {
             try
             {

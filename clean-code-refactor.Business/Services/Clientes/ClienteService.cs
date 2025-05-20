@@ -6,12 +6,12 @@ using clean_code_refactor.Domain.ViewModels;
 
 namespace clean_code_refactor.Domain.Services.Clientes
 {
-    public class ClienteService : BaseService<Cliente, CriarClienteViewModel>, IClienteService
+    public class ClienteService : BaseService<Cliente, ClienteViewModel>, IClienteService
     {
         public ClienteService(
             IBaseRepository<Cliente> clienteRep, 
             IMapper mapper, 
-            IValidation<CriarClienteViewModel> validation) 
+            IValidation<ClienteViewModel> validation) 
             : base(clienteRep, mapper, validation) {}
     }
 }

@@ -1,7 +1,9 @@
-﻿using clean_code_refactor.Business.Models.Clientes;
+﻿using AutoMapper;
+using clean_code_refactor.Business.Models.Clientes;
 using clean_code_refactor.Domain.Bases;
 using clean_code_refactor.Domain.Models;
 using clean_code_refactor.Domain.Models.Reservas;
+using clean_code_refactor.Domain.ViewModels;
 using System.Text.Json.Serialization;
 
 namespace clean_code_refactor.Business.Models.Reservas
@@ -50,6 +52,15 @@ namespace clean_code_refactor.Business.Models.Reservas
         public void RealizarCancelamento()
         {
             Status = StatusReservaEnum.Cancelado;
+        }
+    }
+
+    public class ReservaProfile : Profile
+    {
+        public ReservaProfile()
+        {
+            CreateMap<ReservaViewModel, Reserva>();
+            CreateMap<Reserva, ReservaViewModel>();
         }
     }
 }

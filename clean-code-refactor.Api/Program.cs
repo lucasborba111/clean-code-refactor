@@ -16,7 +16,7 @@ builder.Services.AddControllers().AddJsonOptions(opt =>
 });
 
 // Registros manuais de validações
-builder.Services.AddScoped<IValidation<CriarClienteViewModel>, ClienteValidation>();
+builder.Services.AddScoped<IValidation<ClienteViewModel>, ClienteValidation>();
 builder.Services.AddScoped<IValidation<ReservaViewModel>, ReservaValidation>();
 
 // Registro genérico base

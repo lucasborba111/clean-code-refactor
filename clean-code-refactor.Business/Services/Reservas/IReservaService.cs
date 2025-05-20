@@ -6,8 +6,8 @@ namespace clean_code_refactor.Domain.Services.Reservas
 {
     public interface IReservaService : IBaseService<Reserva, ReservaViewModel>
     {
-        void Cancelar(int id);
-        void RealizarCheckIn(int id);
-        void RealizarCheckOut(int id);
+        Task Cancelar(int id);
+        Task RealizarCheckIn(int id);
+        Task RealizarCheckOut(int id);
     }
 }
